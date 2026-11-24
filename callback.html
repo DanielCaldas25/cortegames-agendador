@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CortEgames Agendador - Connecting</title>
+<style>body{margin:0;background:#0b1020;color:#e9ecf3;font:16px/1.6 system-ui,sans-serif}main{max-width:640px;margin:0 auto;padding:56px 16px}</style>
+</head>
+<body>
+<main>
+  <h1>Connecting your TikTok account…</h1>
+  <p id="msg">Sending the authorization to the CortEgames server.</p>
+</main>
+<script>
+  // TikTok Login Kit returns here (?code=...&state=...). The code is passed to the owner's Google Apps Script
+  // server, which exchanges it for the access token. Nothing is stored in this page.
+  var SERVIDOR = "https://script.google.com/macros/s/AKfycbwqhNbx_ERuhsC6uwfnLGqQxk66D4QFSssKMiUxYR0Pmx08bhODCJT92hRANCGELpg7/exec";
+  var q = location.search.replace(/^\?/, "");
+  if (q.indexOf("code=") >= 0 || q.indexOf("error=") >= 0) {
+    location.replace(SERVIDOR + "?p=tiktok&" + q);
+  } else {
+    document.getElementById("msg").textContent = "No authorization received. Start the connection again from the CortEgames app.";
+  }
+</script>
+</body>
+</html>
